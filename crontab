@@ -1,0 +1,1 @@
+03 00 * * * timeout 6h /nfs/users/nfs_m/mm14/workspace/disk/cron.sh

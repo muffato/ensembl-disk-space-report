@@ -1,0 +1,57 @@
+{
+    "title": "Genebuild",
+    "servers": [
+        {
+            "name": "genebuild1",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild2",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild3",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild4",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild5",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild6",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild7",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild8",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild9",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild10",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild11",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild12",
+            "mysql_port": 3306
+        },
+        {
+            "name": "genebuild13",
+            "mysql_port": 3306
+        }
+    ]
+}

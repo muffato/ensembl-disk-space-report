@@ -1,0 +1,13 @@
+{
+    "title": "Variation",
+    "servers": [
+        {
+            "name": "ens-variation",
+            "mysql_port": 3306
+        },
+        {
+            "name": "ens-variation2",
+            "mysql_port": 3306
+        }
+    ]
+}

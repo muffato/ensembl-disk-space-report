@@ -1,0 +1,24 @@
+{
+    "title": "Compara",
+    "servers": [
+        {
+            "name": "compara1",
+            "pertableinnodb": 1
+        },
+        {
+            "name": "compara2"
+        },
+        {
+            "name": "compara3",
+            "pertableinnodb": 1
+        },
+        {
+            "name": "compara4",
+            "pertableinnodb": 1
+        },
+        {
+            "name": "compara5",
+            "pertableinnodb": 1
+        }
+    ]
+}
