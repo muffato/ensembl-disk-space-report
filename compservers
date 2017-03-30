@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/mp/src/disk_load_compara_servers/
+./compara_servers_disk.pl
+scp compara_servers_disk.png compara_servers_disk_load.html mp@login:~/public_html/
