@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 
 args <- commandArgs(TRUE)
 data <- read.table(args[1], header=TRUE, sep="\t")
