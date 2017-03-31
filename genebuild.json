@@ -1,0 +1,12 @@
+{
+    "title": "Genebuild",
+    "servers": [
+        "mysql-ens-genebuild-prod-1",
+        "mysql-ens-genebuild-prod-2",
+        "mysql-ens-genebuild-prod-3",
+        "mysql-ens-genebuild-prod-4",
+        "mysql-ens-genebuild-prod-5",
+        "mysql-ens-genebuild-prod-6",
+        "mysql-ens-genebuild-prod-7"
+    ]
+}

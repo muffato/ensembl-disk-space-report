@@ -1,13 +1,7 @@
 {
     "title": "Regulation",
     "servers": [
-        {
-            "name": "ens-genomics1",
-            "mysql_port": 3306
-        },
-        {
-            "name": "ens-genomics2",
-            "mysql_port": 3306
-        }
+        "mysql-ens-reg-prod-1",
+        "mysql-ens-reg-prod-2"
     ]
 }
