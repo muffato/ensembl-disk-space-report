@@ -1,1 +1,1 @@
-03 00 * * * timeout 6h /nfs/users/nfs_m/mm14/workspace/disk/cron.sh
+03 00 * * * timeout 6h /homes/muffato/workspace/disk/cron.sh

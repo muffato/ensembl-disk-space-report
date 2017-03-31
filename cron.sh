@@ -14,13 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd ~/workspace/disk/cron/
+cd ~/workspace/disk/cron_ebi/
 log_name=`date --rfc-3339=seconds | sed 's/ /T/'`
 (
 	for i in ../*.json
 	do
 		perl ../servers_disk.pl $i
-		scp -p *png *html ensweb-1-15:/ensemblweb/admin/public-plugins/admin/htdocs/disk_usage/
+		/usr/bin/cp *png *html $HOME/public_html/disk/
+		#scp -p *png *html ensweb-1-15:/ensemblweb/admin/public-plugins/admin/htdocs/disk_usage/
 	done
 	#perl ../servers_disk.pl ../*.json
 	#scp -p *png *html ensweb-1-15:/ensemblweb/admin/public-plugins/admin/htdocs/disk_usage/
