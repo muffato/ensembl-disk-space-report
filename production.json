@@ -2,6 +2,7 @@
     "title": "Production",
     "servers": [
         "mysql-ens-sta-1",
-        "mysql-ens-sta-2"
+        "mysql-ens-sta-2",
+        "mysql-ens-general-prod-1"
     ]
 }

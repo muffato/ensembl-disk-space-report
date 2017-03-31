@@ -1,0 +1,9 @@
+{
+    "title": "Core",
+    "servers": [
+        "mysql-ens-core-prod-1",
+        "mysql-gti-dev-1",
+        "mysql-gti-dev-2",
+        "mysql-gti-pan-1"
+    ]
+}
