@@ -4,6 +4,7 @@
         "mysql-ens-compara-prod-1",
         "mysql-ens-compara-prod-2",
         "mysql-ens-compara-prod-3",
-        "mysql-treefam-prod"
+        "mysql-treefam-prod",
+        "mysql-ens-vertannot-staging"
     ]
 }
