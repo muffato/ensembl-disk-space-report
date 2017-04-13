@@ -56,7 +56,7 @@ my $html_footer = "
 ";
 
 my $url = 'http://ens-prod-1.ebi.ac.uk:5005/status/';
-
+my $mysql_cmd_path = '/nfs/software/ensembl/mysql-cmds/ensembl/bin/';
 my $stm = q{
 SELECT ENGINE, ROUND(SUM(DATA_LENGTH + INDEX_LENGTH), 2)/(1024*1024*1024) AS size_in_meg
 FROM information_schema.TABLES
@@ -98,7 +98,7 @@ sub process {
             $stats->{$key} = $1 if $stats->{$key} =~ /^(.*)G$/;
         }
         warn "querying 'information_schema' on $server\n";
-        my @size_cmd = ($server, 'batch', '', $stm);
+        my @size_cmd = ($mysql_cmd_path.'/'.$server, 'batch', '', $stm);
         local $/ = "\n";
         open(my $size_fh, '-|', @size_cmd);
         while (<$size_fh>) {
