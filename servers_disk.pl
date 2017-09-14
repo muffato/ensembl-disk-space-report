@@ -36,6 +36,7 @@ my $html_pertableinnodb = '
    <li>Free       : %.1f</li>
    <li>InnoDB used: %.1f</li>
    <li>MyISAM used: %.1f</li>
+   <li>Used (other): %.1f</li>
  </ul>
 </li>
 ';
@@ -55,7 +56,7 @@ my $html_footer = "
 </html>
 ";
 
-my $url = 'http://ens-prod-1.ebi.ac.uk:5005/status/';
+my $url = 'http://ens-prod-1.ebi.ac.uk:5002/status/';
 my $mysql_cmd_path = '/nfs/software/ensembl/mysql-cmds/ensembl/bin/';
 my $stm = q{
 SELECT ENGINE, ROUND(SUM(DATA_LENGTH + INDEX_LENGTH), 2)/(1024*1024*1024) AS size_in_meg
@@ -82,7 +83,7 @@ sub process {
     warn "Processing $title\n";
 
     open my $outR, ">", "${filename_prefix}.txt";
-    print $outR join "\t", qw/server Free InnoDB MyISAM/;
+    print $outR join "\t", qw/server Free InnoDB MyISAM other/;
     print $outR "\n";
 
     my %all_stats;
@@ -92,11 +93,6 @@ sub process {
         warn "stats from $server: $stats_json\n";
         my $stats = decode_json($stats_json);
         $all_stats{$server} = $stats;
-        foreach my $key (qw(disk_available disk_total disk_used)) {
-            $stats->{$key} = $1*1024 if $stats->{$key} =~ /^(.*)T$/;
-            $stats->{$key} = $1/1024 if $stats->{$key} =~ /^(.*)M$/;
-            $stats->{$key} = $1 if $stats->{$key} =~ /^(.*)G$/;
-        }
         warn "querying 'information_schema' on $server\n";
         my @size_cmd = ($mysql_cmd_path.'/'.$server, 'batch', '', $stm);
         local $/ = "\n";
@@ -113,9 +109,11 @@ sub process {
         close($size_fh);
 
         print $outR join "\t", ($server,
-            $stats->{disk_available},
+            $stats->{disk_available_g},
             $stats->{innodb_used},
-            $stats->{myisam_used});
+            $stats->{myisam_used},
+            $stats->{disk_total_g}-$stats->{disk_available_g}-$stats->{innodb_used}-$stats->{myisam_used},
+        );
         print $outR "\n";
     }
     close ($outR);
@@ -133,9 +131,10 @@ sub process {
         my $stats = $all_stats{$s};
             print $outhtml sprintf($html_pertableinnodb,
                 $s,
-                $stats->{disk_available},
+                $stats->{disk_available_g},
                 $stats->{innodb_used},
                 $stats->{myisam_used},
+                $stats->{disk_total_g}-$stats->{disk_available_g}-$stats->{innodb_used}-$stats->{myisam_used},
             );
     }
     print $outhtml $html_footer;
