@@ -30,7 +30,7 @@ $|++;
 
 my $currTime = localtime();
 
-my $html_pertableinnodb = '
+my $html_perserver = '
 <li>%s
  <ul>
    <li>Free       : %.1f</li>
@@ -41,14 +41,19 @@ my $html_pertableinnodb = '
 </li>
 ';
 
-my $html_header = "<html>
-<title>%s servers disk usage</title>
+my $html_header = q{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>%s servers disk usage</title>
+</head>
 <body>
 <h1>%s servers disk usage</h1>
-<p><i>last updated: %s</i></p>
-<img src='%s.png' />
+<p>
+ <i>last updated: %s</i><br/>
+ <img src='%s.png' alt='(Disk usage barplot)'/>
+</p>
 <ol>
-";
+};
 
 my $html_footer = "
 </ol>
@@ -129,7 +134,7 @@ sub process {
     print $outhtml sprintf($html_header, $title, $title, $currTime, $filename_prefix);
     foreach my $s (@$servers) {
         my $stats = $all_stats{$s};
-            print $outhtml sprintf($html_pertableinnodb,
+            print $outhtml sprintf($html_perserver,
                 $s,
                 $stats->{disk_available_g},
                 $stats->{innodb_used},
