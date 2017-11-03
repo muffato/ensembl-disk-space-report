@@ -21,6 +21,7 @@ use warnings;
 use Data::Dumper;
 use DBI;
 use File::Basename;
+use IPC::Cmd qw[can_run run run_forked];
 use JSON qw(decode_json);
 use LWP::Simple;
 
@@ -38,6 +39,14 @@ my $html_perserver = '
    <li>MyISAM used: %.1f</li>
    <li>Used (other): %.1f</li>
  </ul>
+ <label for="%s">&gt; Show per-database disk usage</label>
+ <input type="checkbox" id="%s"/>
+ <div>
+  <pre>
+   %s
+  </pre>
+ </div>
+ <br/>
 </li>
 ';
 
@@ -45,6 +54,14 @@ my $html_header = q{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "ht
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
  <title>%s servers disk usage</title>
+ <style type='text/css'>
+input[type=checkbox] + div {
+  display: none;
+}
+input[type=checkbox]:checked + div {
+  display: block;
+}
+ </style>
 </head>
 <body>
 <h1>%s servers disk usage</h1>
@@ -69,6 +86,7 @@ FROM information_schema.TABLES
 WHERE ENGINE IN ("InnoDB", "MyISAM")
 GROUP BY ENGINE;
 };
+my $db_space_path = '/homes/muffato/workspace/src/ensembl/ensembl/misc-scripts/db/db-space.pl';
 
 process($_) for @ARGV;
 
@@ -99,7 +117,8 @@ sub process {
         my $stats = decode_json($stats_json);
         $all_stats{$server} = $stats;
         warn "querying 'information_schema' on $server\n";
-        my @size_cmd = ($mysql_cmd_path.'/'.$server, 'batch', '', $stm);
+        my $mysql_cmd = $mysql_cmd_path.'/'.$server;
+        my @size_cmd = ($mysql_cmd, 'batch', '', $stm);
         local $/ = "\n";
         open(my $size_fh, '-|', @size_cmd);
         while (<$size_fh>) {
@@ -112,6 +131,10 @@ sub process {
             }
         }
         close($size_fh);
+        my $per_db_size_cmd = "$db_space_path \$($mysql_cmd details script)";
+        my @a = run( command => $per_db_size_cmd, verbose => 1 );
+        die "Cannot run '$per_db_size_cmd': $a[1]\n" unless $a[0];
+        $stats->{per_db} = $a[3];
 
         print $outR join "\t", ($server,
             $stats->{disk_available_g},
@@ -140,6 +163,8 @@ sub process {
                 $stats->{innodb_used},
                 $stats->{myisam_used},
                 $stats->{disk_total_g}-$stats->{disk_available_g}-$stats->{innodb_used}-$stats->{myisam_used},
+                $s, $s,
+                $stats->{per_db},
             );
     }
     print $outhtml $html_footer;
