@@ -21,9 +21,6 @@ log_name=`date --rfc-3339=seconds | sed 's/ /T/'`
 	do
 		perl ../servers_disk.pl $i
 		/usr/bin/cp -p *png *html $HOME/public_html/disk/
-		#scp -p *png *html ensweb-1-15:/ensemblweb/admin/public-plugins/admin/htdocs/disk_usage/
 	done
-	#perl ../servers_disk.pl ../*.json
-	#scp -p *png *html ensweb-1-15:/ensemblweb/admin/public-plugins/admin/htdocs/disk_usage/
 ) > log/$log_name.out 2> log/$log_name.err
 
