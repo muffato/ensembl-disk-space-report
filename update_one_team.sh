@@ -15,9 +15,6 @@
 # limitations under the License.
 
 cd ~/workspace/disk/cron_ebi/
-log_name=`date --rfc-3339=seconds | sed 's/ /T/'`
-(
-    perl ../servers_disk.pl ../${1}.json
-    /usr/bin/cp -p *png *html $HOME/public_html/disk/
-) > log/$log_name.out 2> log/$log_name.err
+perl ../servers_disk.pl ../${1}.json
+/usr/bin/cp -p *png *html $HOME/public_html/disk/
 
