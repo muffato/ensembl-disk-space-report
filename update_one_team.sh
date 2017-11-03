@@ -15,6 +15,5 @@
 # limitations under the License.
 
 cd ~/workspace/disk/cron_ebi/
-perl ../servers_disk.pl ../${1}.json
-/usr/bin/cp -p *png *html $HOME/public_html/disk/
+perl ../servers_disk.pl ../${1}.json && /usr/bin/cp -p *png *html $HOME/public_html/disk/
 
