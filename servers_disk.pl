@@ -21,7 +21,7 @@ use warnings;
 use Data::Dumper;
 use DBI;
 use File::Basename;
-use IPC::Cmd qw[can_run run run_forked];
+use IPC::Cmd qw(run);
 use JSON qw(decode_json);
 use LWP::Simple;
 
