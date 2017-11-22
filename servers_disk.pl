@@ -134,7 +134,8 @@ sub process {
         my $per_db_size_cmd = "$db_space_path \$($mysql_cmd details script)";
         my @a = run( command => $per_db_size_cmd, verbose => 1 );
         die "Cannot run '$per_db_size_cmd': $a[1]\n" unless $a[0];
-        $stats->{per_db} = $a[3];
+        $stats->{per_db} = join("", @{$a[3]});
+        $stats->{per_db} =~ s/\n/<br\/>/g;
 
         print $outR join "\t", ($server,
             $stats->{disk_available_g},
