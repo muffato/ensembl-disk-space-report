@@ -78,7 +78,7 @@ my $html_footer = "
 </html>
 ";
 
-my $url = 'http://ens-prod-1.ebi.ac.uk:5002/status/';
+my $url = 'http://ens-prod-1.ebi.ac.uk:5002/hosts/';
 my $mysql_cmd_path = '/nfs/software/ensembl/mysql-cmds/ensembl/bin/';
 my $stm = q{
 SELECT ENGINE, ROUND(SUM(DATA_LENGTH + INDEX_LENGTH), 2)/(1024*1024*1024) AS size_in_meg
