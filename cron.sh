@@ -14,12 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd ~/workspace/disk/cron_ebi/
 log_name=`date --rfc-3339=seconds | sed 's/ /T/'`
-(
-	for i in ../*.json
-	do
-		perl ../servers_disk.pl $i && /usr/bin/cp -p *png *html $HOME/public_html/disk/
-	done
-) > log/$log_name.out 2> log/$log_name.err
+cd ~/workspace/disk/
+exec ./update_all_teams.sh > cron_ebi/log/${log_name}.out 2> cron_ebi/log/${log_name}.err
 
