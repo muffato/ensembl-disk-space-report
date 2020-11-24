@@ -15,6 +15,6 @@
 # limitations under the License.
 
 log_name=`date --rfc-3339=seconds | sed 's/ /T/'`
-cd ~/workspace/disk/
+cd ~/workspace/mysql/disk/
 exec ./update_all_teams.sh > cron_ebi/log/${log_name}.out 2> cron_ebi/log/${log_name}.err
 

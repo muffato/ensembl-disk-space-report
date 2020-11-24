@@ -1,1 +1,1 @@
-0 1 * * * timeout 6h /homes/muffato/workspace/disk/cron.sh
+0 1 * * * timeout 6h /homes/muffato/workspace/mysql/disk/cron.sh

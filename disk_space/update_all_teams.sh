@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd ~/workspace/disk
+cd ~/workspace/mysql/disk/
 for i in *.json
 do
 	./update_one_team.sh ${i/.json/}
