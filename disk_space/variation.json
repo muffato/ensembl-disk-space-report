@@ -2,6 +2,8 @@
     "title": "Variation",
     "servers": [
         "mysql-ens-var-prod-1",
-        "mysql-ens-var-prod-2"
+        "mysql-ens-var-prod-2",
+        "mysql-ens-var-prod-3",
+        "mysql-ens-var-prod-4"
     ]
 }

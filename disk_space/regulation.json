@@ -2,6 +2,8 @@
     "title": "Regulation",
     "servers": [
         "mysql-ens-reg-prod-1",
-        "mysql-ens-reg-prod-2"
+        "mysql-ens-reg-prod-2",
+        "mysql-ens-reg-prod-3",
+        "mysql-ens-reg-prod-4"
     ]
 }
