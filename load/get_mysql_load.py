@@ -55,7 +55,7 @@ def do(server):
     print(server, "do")
 
     # No try-except here because I don't feel the need
-    url = "https://production-services.ensembl.org/api/production/db/hosts/" + server
+    url = "https://production-services.ensembl.org/api/vertebrates/db/hosts/" + server
     st = get_stats(url)
     # Sample output:
     #{'dir': '/instances', 'disk_available_g': 1788, 'disk_total_g': 4524, 'disk_used_g': 2507, 'disk_used_pct': 55.4, 'host': 'mysql-ens-compara-prod-1', 'load_15m': 0.0, 'load_1m': 0.0, 'load_5m': 0.0, 'memory_available_m': 267, 'memory_total_m': 32106, 'memory_used_m': 31838, 'memory_used_pct': 99.2, 'n_cpus': 8}
