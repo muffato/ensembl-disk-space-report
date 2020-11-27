@@ -11,7 +11,6 @@ import requests
 this_dir = os.path.dirname(os.path.realpath(__file__))
 html_dir = '/homes/muffato/public_html/load/'
 save_dir = html_dir + 'data/'
-backup_dir = "/nfs/production/panda/ensembl/compara/muffato/archives/mysql_stats/"
 
 
 with open(os.path.join(html_dir, 'server_list.json')) as f:
@@ -71,10 +70,6 @@ def do(server):
 
     line = "\t".join([now, str(nproc), str(st['load_1m']), str(st['load_5m']), str(st['load_15m'])])
     print(server, line)
-
-    # Append to backup file
-    with open(backup_dir + server, 'a') as fh:
-        print(line, file=fh)
 
     if os.path.isfile(save_dir + server) and os.stat(save_dir + server).st_size > 500000:
         # Truncate the main file if too big
