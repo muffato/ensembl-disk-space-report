@@ -14,6 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cd ~/workspace/mysql/disk/cron_ebi
+cd ~/workspace/mysql-monitor/disk_space/cron_ebi
 env -i perl ../servers_disk.pl ../${1}.json && /usr/bin/cp -p ${1}.png ${1}.html ~/public_html/disk/
 
